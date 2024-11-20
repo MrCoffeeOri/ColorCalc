@@ -1,1 +1,1 @@
-# A test app made for a IFSP project
+# A test app, AKA color calculator, made for a IFSP project
