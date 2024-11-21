@@ -114,13 +114,21 @@ const App = () => {
   };
 
   const handleRgbChange = (r, g, b) => {
-    setRValue(r);
-    setGValue(g);
-    setBValue(b);
-
+    const validateValue = (value) => {
+      if (value === '' || isNaN(value)) return '';
+      const numericValue = parseInt(value, 10);
+      return Math.min(Math.max(numericValue, 0), 255).toString();
+    };
+    setRValue(validateValue(r));
+    setGValue(validateValue(g));
+    setBValue(validateValue(b));
     if (r !== '' && g !== '' && b !== '') {
-      const hex = rgbToHex(parseInt(r), parseInt(g), parseInt(b));
-      setHexColor(hex); // Atualiza a cor de preview
+      const hex = rgbToHex(
+        parseInt(validateValue(r), 10),
+        parseInt(validateValue(g), 10),
+        parseInt(validateValue(b), 10)
+      );
+      setHexColor(hex);
     }
   };
 
